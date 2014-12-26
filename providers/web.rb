@@ -55,6 +55,10 @@ action :create do
     node.set['nginx']['install_method'] = node['kibana']['nginx']['install_method']
     @run_context.include_recipe 'nginx'
 
+    # required to make the notify work below, as the include above doesn't always
+    # run if the recipe has already been included
+    service 'nginx'
+
     template "#{node['nginx']['dir']}/sites-available/#{resources[:name]}" do
       source resources[:template]
       cookbook resources[:template_cookbook]
