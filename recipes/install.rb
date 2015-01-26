@@ -33,7 +33,7 @@ if node['kibana']['user'].empty?
   end
 else
   kibana_user = node['kibana']['user']
-  kibana_user kibana_user do
+  legacy_kibana_user kibana_user do
     name kibana_user
     group kibana_user
     home node['kibana']['install_dir']
@@ -41,7 +41,7 @@ else
   end
 end
 
-kibana_install 'kibana' do
+legacy_kibana_install 'kibana' do
   user kibana_user
   group kibana_user
   install_dir node['kibana']['install_dir']
@@ -61,7 +61,7 @@ link "#{node['kibana']['install_dir']}/current/app/dashboards/default.json" do
   only_if { !File.symlink?("#{node['kibana']['install_dir']}/current/app/dashboards/default.json") }
 end
 
-kibana_web 'kibana' do
+legacy_kibana_web 'kibana' do
   type lazy { node['kibana']['webserver'] }
   docroot "#{node['kibana']['install_dir']}/current"
   es_server node['kibana']['es_server']

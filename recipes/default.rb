@@ -85,6 +85,6 @@ if node['kibana']['legacy_mode']
   end
 
   unless node['kibana']['webserver'].empty?
-    include_recipe "kibana::#{node['kibana']['webserver']}"
+    include_recipe "legacy_kibana::#{node['kibana']['webserver']}"
   end
 end

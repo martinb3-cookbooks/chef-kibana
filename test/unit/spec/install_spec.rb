@@ -2,7 +2,7 @@
 
 require_relative 'spec_helper'
 
-describe 'kibana::install' do
+describe 'legacy_kibana::install' do
   describe 'ubuntu' do
     let(:runner) { ChefSpec::ServerRunner.new(::UBUNTU_OPTS) }
     let(:node) { runner.node }
@@ -12,11 +12,11 @@ describe 'kibana::install' do
       runner.node.set['kibana']['install_dir'] = '/opt/kibanana'
       runner.node.set['kibana']['install_type'] = 'file'
       runner.node.set['kibana']['config_template'] = 'config.js.erb'
-      runner.node.set['kibana']['config_cookbook'] = 'kibana'
+      runner.node.set['kibana']['config_cookbook'] = 'legacy_kibana'
       runner.node.set['kibana']['webserver'] = 'nginx'
       runner.node.set['kibana']['es_server'] = '127.0.0.1'
       runner.node.set['kibana']['nginx']['template'] = 'kibana-nginx.conf.erb'
-      runner.node.set['kibana']['nginx']['template_cookbook'] = 'kibana'
+      runner.node.set['kibana']['nginx']['template_cookbook'] = 'legacy_kibana'
       runner.node.set['kibana']['nginx']['enable_default_site'] = false
       runner.node.set['kibana']['nginx']['install_method'] = 'package'
       runner.converge(described_recipe)
@@ -24,7 +24,7 @@ describe 'kibana::install' do
     include_context 'stubs-common'
 
     it 'creates kibana user' do
-      expect(chef_run).to create_kibana_user('kibanana').with(
+      expect(chef_run).to create_legacy_kibana_user('kibanana').with(
         user: 'kibanana',
         group: 'kibanana',
         home: '/opt/kibanana'
@@ -32,7 +32,7 @@ describe 'kibana::install' do
     end
 
     it 'installs kibana' do
-      expect(chef_run).to create_kibana_install('kibana').with(
+      expect(chef_run).to create_legacy_kibana_install('kibana').with(
         user: 'kibanana',
         group: 'kibanana',
         install_dir: '/opt/kibanana',
@@ -56,7 +56,7 @@ describe 'kibana::install' do
     end
 
     it 'installs and configures a webserver' do
-      expect(chef_run).to create_kibana_web('kibana').with(
+      expect(chef_run).to create_legacy_kibana_web('kibana').with(
         type: 'nginx',
         docroot: '/opt/kibanana/current',
         es_server: '127.0.0.1'

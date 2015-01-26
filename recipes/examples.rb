@@ -18,13 +18,13 @@
 # limitations under the License.
 #
 
-kibana_user 'kibana' do
+legacy_kibana_user 'kibana' do
   name 'kibana'
   group 'kibana'
   home '/opt/kibana'
 end
 
-kibana_install 'file' do
+legacy_kibana_install 'file' do
   name 'web'
   user 'kibana'
   group 'kibana'
@@ -32,7 +32,7 @@ kibana_install 'file' do
   install_type 'file'
 end
 
-kibana_install 'git' do
+legacy_kibana_install 'git' do
   name 'kibana-git'
   user 'kibana'
   group 'kibana'
@@ -40,13 +40,13 @@ kibana_install 'git' do
   install_type 'git'
 end
 
-kibana_web 'kibana_file' do
+legacy_kibana_web 'kibana_file' do
   type 'apache'
   docroot '/opt/kibana/current'
   listen_port '8080'
 end
 
-kibana_web 'kibana_git' do
+legacy_kibana_web 'kibana_git' do
   type 'nginx'
   docroot '/opt/kibana-git/current'
   es_port '2900'

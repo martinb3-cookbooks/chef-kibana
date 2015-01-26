@@ -12,7 +12,7 @@ default_action :create if defined?(default_action)
 
 attribute :name, kind_of: String, name_attribute: true
 attribute :type, kind_of: String, default: 'nginx'
-attribute :template_cookbook, kind_of: String, default: 'kibana'
+attribute :template_cookbook, kind_of: String, default: 'legacy_kibana'
 attribute :docroot, kind_of: String, default: '/opt/kibana/current'
 attribute :template, kind_of: String
 attribute :server_name, kind_of: String, default: 'kibana.localhost'

@@ -38,7 +38,7 @@ default['kibana']['user'] = ''
 
 # config template location and variables.
 default['kibana']['config_template'] = 'config.js.erb'
-default['kibana']['config_cookbook'] = 'kibana'
+default['kibana']['config_cookbook'] = 'legacy_kibana'
 default['kibana']['config']['kibana_index']  = 'kibana-int'
 default['kibana']['config']['panel_names']   =  %w(histogram map pie table filtering timepicker text fields hits dashcontrol column derivequeries trends bettermap query terms)
 default['kibana']['config']['default_route'] = '/dashboard/file/logstash.json'

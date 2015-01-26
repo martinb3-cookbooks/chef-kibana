@@ -10,9 +10,9 @@ platforms:
 
 suites:
   - name: default
-    run_list: 
+    run_list:
       - recipe[apt::default]
-      - recipe[kibana::install]
+      - recipe[legacy_kibana::install]
     attributes:
       kibana:
         legacy_mode: false
